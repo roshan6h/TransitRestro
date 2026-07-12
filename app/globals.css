@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-gold: #D4AF37;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevents shifts in container widths when scrollbars appear/disappear */
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #fdf8f8;
+  color: #1c1b1b;
+  overflow-x: hidden;
+
+  /* Advanced typography rendering rules to prevent font flicker */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #D4AF37;
+  color: #111111;
+}
+
+/* 
+  ❌ NEVER use '*' for universal transitions! 
+  It causes massive rendering lags and layout flickering. 
+  Only apply transitions to layout-stable elements like standard interactive items.
+*/
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  /* Improves image resizing performance */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Form outlines & focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Utility layers */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Prevent scroll chaining on mobile slide-out drawers */
+  .overscroll-contain {
+    overscroll-behavior: contain;
+  }
+
+  /* Cross-browser scrollbar hiding */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
